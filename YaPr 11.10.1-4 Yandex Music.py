@@ -5,4 +5,5 @@ df.tail().groupby('user_id')
 #print(df) #провека работает
 df.tail().groupby('user_id').sum() 
 current_engagement = df.tail().groupby('user_id').sum().median()
-print(current_engagement) #провека работает
+print(current_engagement) #выходит ошибка при выводе
+
