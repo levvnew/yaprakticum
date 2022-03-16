@@ -3,7 +3,9 @@ import pandas as pd
 logs = pd.read_csv('/datasets/logs.csv')
 logs['email'] = logs['email'].fillna(value='')
 # мой код ниже
-logs.loc[logs['source'] == ''] = 'email'
+logs['source'] = logs['source'].fillna(value='None')
+#logs['source'].fillna(value='email')
+#logs.loc[logs['source'] == None] = 'email'
 #
 print(logs['source'].value_counts()) #одинаково "неверные" значения переменной logs
 #print(logs.agg({'source' : ['value_counts']})) #одинаково "неверные" значения переменной logs
