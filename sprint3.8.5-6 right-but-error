@@ -1,0 +1,31 @@
+
+# код с моими мыслями в под решетками
+
+
+
+
+
+
+import pandas as pd
+
+logs = pd.read_csv('/datasets/logs.csv')
+logs['email'] = logs['email'].fillna(value='')
+logs.loc[logs['source'] == 'None', 'source'] = 'email'
+
+logs_grouped = logs.groupby('source').agg({'purchase' : ['count', 'sum']})
+# уберем строку ниже, как несостоятельную
+# logs_grouped['conversion'] = logs_grouped.agg({'purchase': ['count','sum']})
+
+# При данном коде в столбце conversion выходит NaN
+#logs['visits'] = logs_grouped[0'count']
+#logs['purchase'] = logs_grouped['purchase']['sum']
+
+
+#visits = logs_grouped['count']
+#purchase = logs_grouped['sum']
+#logs_grouped['conversion'] = logs_grouped['sum'] / logs_grouped['count']
+# logs_grouped['conversion'] = logs['purchase'] / logs['visits'] # выводит NaN
+#logs_grouped['conversion'] = purchase / visits
+logs_grouped['conversion'] = logs_grouped['purchase']['sum'] / logs_grouped['purchase']['count']
+
+print(logs_grouped)
