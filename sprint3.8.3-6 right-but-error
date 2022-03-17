@@ -5,7 +5,7 @@ logs['email'] = logs['email'].fillna(value='')
 # мой код ниже
 logs['source'] = logs['source'].fillna(value='None')
 #logs['source'].fillna(value='email')
-#logs.loc[logs['source'] == None] = 'email'
+logs.loc[logs['source'] == 'None', 'source'] = 'email'
 #
 print(logs['source'].value_counts()) #одинаково "неверные" значения переменной logs
 #print(logs.agg({'source' : ['value_counts']})) #одинаково "неверные" значения переменной logs
